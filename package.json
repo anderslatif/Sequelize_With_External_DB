@@ -1,0 +1,15 @@
+{
+  "version": "0.0.1",
+  "description": "Playing around with CRUD on Raspberry PI",
+  "dependencies": {
+    "mysql2": "^1.2.0",
+    "sequelize": "^3.30.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/anderslatif/Sequelize_With_External_DB"
+  },
+  "scripts": {
+    "start": "index.js"
+  }
+}
