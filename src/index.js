@@ -1,4 +1,8 @@
-var sequelize = new Sequlize('sequelize', 'root', 'root', {
+// var Sequelize = require('sequelize');
+import { DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD } from './DatabaseConstants'
+
+
+/*var sequelize = new Sequelize(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD, {
     host: 'localhost',
     dialect: 'mysql',
 
@@ -17,4 +21,4 @@ sequelize
     })
     .catch(function (err) {
         console.log('Unable to connect to the database:', err);
-});
+});*/
