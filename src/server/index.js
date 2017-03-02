@@ -18,27 +18,23 @@ var server = app.listen(3000, function(err) {
 
 
 
-var Sequelize = require('sequelize');
-var DatabaseConstants = require("./DatabaseConstants");
+console.log("Database");
+var Sequelize = require('sequelize');  // the is the library method
+var sequelize = require('./db-helper/sequelize.js')();
+//var User = require('./models/user.js');
 
 
-var sequelize = new Sequelize(DatabaseConstants.DATABASE_NAME, DatabaseConstants.DATABASE_USERNAME, DatabaseConstants.DATABASE_PASSWORD, {
-    host: DatabaseConstants.DATABASE_HOST,
-    dialect: 'mysql',
-
-    pool: {
-        max: 5,
-        min: 0,
-        idle: 10000
-    }
-});
 
 
-sequelize
-    .authenticate()
-    .then(function(err) {
-        console.log('Connection has been established successfully.');
-    })
-    .catch(function (err) {
-        console.log('Unable to connect to the database:', err);
-});
+
+console.log("@@@@@@@@@@@@@", sequelize.User);
+
+// force: true will drop the table if it already exists
+/*sequelize.User.sync({force: true}).then(function () {
+    // Table created
+    return User.create({
+        firstName: 'John',
+        lastName: 'Hancock'
+    });
+});*/
+
