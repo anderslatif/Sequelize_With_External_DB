@@ -14,7 +14,7 @@
     "url": "https://github.com/anderslatif/Sequelize_With_External_DB"
   },
   "scripts": {
-    "start-dev": "webpack-dev-server --content-base src --inline --hot"
+    "start": "node src/server/index.js"
   },
   "devDependencies": {
     "babel-core": "^6.23.1",
