@@ -27,7 +27,7 @@ var sequelize = require('./db-helper/sequelize.js')();
 
 
 
-console.log("@@@@@@@@@@@@@", sequelize.User);
+//console.log("@@@@@@@@@@@@@", sequelize.User);
 
 // force: true will drop the table if it already exists
 /*sequelize.User.sync({force: true}).then(function () {
