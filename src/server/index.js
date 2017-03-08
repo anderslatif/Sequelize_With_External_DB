@@ -1,27 +1,34 @@
 var express = require("express");
 var path = require("path");
+var Promise = require("bluebird");
 
 var app = express();
 
-// app.use(express.static(path.join(__dirname, "..", "public")));
+console.log("Database");
+var db = require('./models/db');
+
+
+
+db.sequelize.sync().then( function() {
+     var server = app.listen(3000, function(err) {
+        if (err) {
+            console.log('Cannot listen on port %d', server.address().port)
+        }
+        console.log('Listening on port %d', server.address().port);
+    });
+});
+
 
 app.get("/", function(req, res) {
     res.sendFile( __dirname + "/index.html" );
-});
-
-var server = app.listen(3000, function(err) {
-    if (err) {
-        console.log('Cannot listen on port %d', server.address().port)
-    }
-    console.log('Listening on port %d', server.address().port);
+    console.log("!!!!!!!!", db);
+    //db.User.findAll(db);
 });
 
 
 
-console.log("Database");
-var Sequelize = require('sequelize');  // the is the library method
-var sequelize = require('./db-helper/sequelize.js')();
-//var User = require('./models/user.js');
+
+
 
 
 

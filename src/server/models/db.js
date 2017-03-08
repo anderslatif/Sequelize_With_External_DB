@@ -1,10 +1,18 @@
+var mysql = require('mysql');
+var fs = require('fs');
+var path = require('path');
+var Sequelize = require('sequelize');
 var sequelize = require('../db-helper/sequelize')();
 var inflection = sequelize.Utils.inflection;
 var Promise = require('bluebird');
+var Moment = require('moment');
 
 
 var db = {};
 
+var user = require('./user')(sequelize, Sequelize);
+console.log("+================", user);
+db.User = user;
 /*
  *Load in the models, and inject them into our db object
  */
@@ -24,5 +32,8 @@ Promise.map(Object.keys(db), function (modelName) {
 }).then(function() {
     sequelize.sync({ force: false, logging: function() { return true; } });
 });
+
+db.sequelize = sequelize;
+db.Sequelize = Sequelize;
 
 module.exports = db;

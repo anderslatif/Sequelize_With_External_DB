@@ -4,8 +4,12 @@
   "author": "Anders",
   "license": "ISC",
   "dependencies": {
+    "bluebird": "^3.5.0",
     "chai": "^3.5.0",
     "concurrently": "^3.3.0",
+    "expect.js": "^0.3.1",
+    "express": "^4.15.2",
+    "mocha": "^3.2.0",
     "mysql": "^2.13.0",
     "mysql2": "^1.2.0",
     "sequelize": "^3.30.2",

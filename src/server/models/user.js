@@ -8,11 +8,11 @@ module.export = function (sequelize, DataTypes) {
             primaryKey: true
         },
         firstName: {
-            type: Sequelize.STRING,
+            type: DataTypes.STRING,
             field: 'first_name'
         },
         lastName: {
-            type: Sequelize.STRING,
+            type: DataTypes.STRING,
             field: 'last_name'
         },
     }, {
