@@ -6,6 +6,28 @@
 </head>
 <body>
     <div>Welcome</div>
-    <script src="index.min.js"></script>
+
+    <div class="users"></div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script>
+        $.ajax({
+            "url": "/newuser/firstName/lastName",
+            "method": "GET"
+        });
+    $.get("/users", function(data, status) {
+        let users = data.usersList;
+        $("#users").empty();
+        for (user in users){
+            $("#users").append( "<div>"+user.firstName+" : "+"user.lastName"+"</div>"  );
+        }
+        $("#users").empty();
+
+    });
+
+
+
+    </script>
+
 </body>
 </html>

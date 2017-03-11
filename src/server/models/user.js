@@ -1,4 +1,4 @@
-module.export = function (sequelize, DataTypes) {
+module.exports = function (sequelize, DataTypes) {
 
     var User = sequelize.define('User', {
         id: {
@@ -9,11 +9,11 @@ module.export = function (sequelize, DataTypes) {
         },
         firstName: {
             type: DataTypes.STRING,
-            field: 'first_name'
+            field: 'firstName'
         },
         lastName: {
             type: DataTypes.STRING,
-            field: 'last_name'
+            field: 'lastName'
         },
     }, {
         tableName: "users",

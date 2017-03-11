@@ -1,0 +1,10 @@
+{
+  "http": {
+    "port": 3306
+  },
+  "database": {
+    "username": "root",
+    "password": "root",
+    "database": "sequelize"
+  }
+}

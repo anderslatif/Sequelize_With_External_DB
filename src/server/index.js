@@ -4,7 +4,7 @@ var Promise = require("bluebird");
 
 var app = express();
 
-console.log("Database");
+// syncing the models to the database and associating the mapping (persistence layer)
 var db = require('./models/db');
 
 
@@ -21,8 +21,32 @@ db.sequelize.sync().then( function() {
 
 app.get("/", function(req, res) {
     res.sendFile( __dirname + "/index.html" );
-    console.log("!!!!!!!!", db);
-    //db.User.findAll(db);
+});
+
+app.get("/users", function(req, res) {
+    var usersList = [];
+
+    return db.User.findAll().then( function(users) {
+
+        return users.forEach( function(user) {
+            usersList.push({firstName: user.firstName, lastName: user.lastName});
+        })
+    }).then( function() {
+        res.json({usersList: usersList});
+    });
+});
+
+app.get("/newuser/:firstName/:lastName", function(req, res) {
+    let firstName = req.params.firstName;
+    let lastName = req.params.lastName;
+
+    var newUser = {firstName: firstName, lastName: lastName};
+
+    return db.User.create(newUser)
+        .catch( function(error) {
+            console.log("Error happened while creating a new user    ");
+            console.log(error)
+        });
 });
 
 
@@ -30,18 +54,4 @@ app.get("/", function(req, res) {
 
 
 
-
-
-
-
-//console.log("@@@@@@@@@@@@@", sequelize.User);
-
-// force: true will drop the table if it already exists
-/*sequelize.User.sync({force: true}).then(function () {
-    // Table created
-    return User.create({
-        firstName: 'John',
-        lastName: 'Hancock'
-    });
-});*/
 
