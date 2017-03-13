@@ -4,16 +4,21 @@ var Promise = require("bluebird");
 
 var app = express();
 
+// improves HTTP headers for security purposes
+var helmet = require("helmet");
+app.use(helmet);
+
+// security tip: use csrf when rendering, which will add a token to the page source that will be sent with requests
+
 // For SSL
 var https = require("https");
-var fs = require("fs"); // to read the private and public key files
+var fs = require("fs"); // to read the private and cert key files
 
-var privateKey = fs.readFileSync(__dirname + "/sslcert/privateSSL", 'utf8');
-var certificate = fs.readFileSync(__dirname + "/sslcert/public", 'utf8');
+var privateKey = fs.readFileSync(__dirname + "/sslcert/privateSSL.pem", 'utf8');
+var certificate = fs.readFileSync(__dirname + "/sslcert/cert.pem", 'utf8');
 var sslOptions = {"key": privateKey, "cert": certificate};
 
 var serverSSL = https.createServer(sslOptions, app);
-
 
 // syncing the models to the database and associating the mapping (persistence layer)
 var db = require('./models/db');
